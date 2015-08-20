@@ -7,8 +7,12 @@ public class FollowCamera : MonoBehaviour {
     public float xSmooth = 1.5f;
     public float ySmooth = 1.5f;
 
-    public Vector2 maxXandY;
+    
     public Transform player;
+    public GameObject background;
+
+    private Vector2 maxXandY;
+    private Vector2 minXandY;
 
     void Awake()
     {
@@ -17,6 +21,12 @@ public class FollowCamera : MonoBehaviour {
         {
             Debug.LogError("Player object not found");
         }
+        var backgroundBounds = background.GetComponent<Renderer>().bounds;
+        var camTopLeft = GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0, 0, 0));
+        var camBotRight = GetComponent<Camera>().ViewportToWorldPoint(new Vector3(1, 1, 0));
+
+        minXandY.x = backgroundBounds.min.x - camTopLeft.x;
+        maxXandY.x = backgroundBounds.max.x - camBotRight.x;
     }
 
     bool CheckXMargin()
@@ -38,7 +48,8 @@ public class FollowCamera : MonoBehaviour {
             targetX = Mathf.Lerp(transform.position.x, player.position.x, xSmooth * Time.fixedDeltaTime);
         if (CheckYMargin())
             targetY = Mathf.Lerp(transform.position.y, player.position.y, ySmooth * Time.fixedDeltaTime);
-
+        targetX = Mathf.Clamp(targetX, minXandY.x, maxXandY.x);
+        targetY = Mathf.Clamp(targetY, minXandY.y, maxXandY.y);
         transform.position = new Vector3(targetX, targetY, transform.position.z);
     }
 }
