@@ -44,6 +44,15 @@ public class FollowCamera : MonoBehaviour {
         float targetX = transform.position.x;
         float targetY = transform.position.y;
 
+        /*
+         * An addition here for feel, 
+         * char: >
+         * margin: |
+         * screen edge: [, ]
+         * currently : [ |  >| ]
+         * desired: [ |>  | ]
+         * so that the player can see ahead in a desired direction.
+         */
         if (CheckXMargin())
             targetX = Mathf.Lerp(transform.position.x, player.position.x, xSmooth * Time.fixedDeltaTime);
         if (CheckYMargin())
