@@ -74,10 +74,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Camera\Follow.cs" />
     <Compile Include="Assets\Scripts\CharacterMovement.cs" />
     <Compile Include="Assets\Scripts\Entity.cs" />
-    <Compile Include="Assets\Scripts\FollowCamera.cs" />
-    <Compile Include="Assets\Scripts\NavigationPrompt.cs" />
+    <Compile Include="Assets\Scripts\Navigation\Manager.cs" />
+    <Compile Include="Assets\Scripts\Navigation\Prompt.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
