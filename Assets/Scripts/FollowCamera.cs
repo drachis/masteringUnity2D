@@ -5,11 +5,17 @@ public class FollowCamera : MonoBehaviour {
     public float yMargin = 1.5f;
     public float xSmooth = 1.5f;
     public float ySmooth = 1.5f;
-    public Vector2 maxXandY;
-    public Vector2 minXandY;
     public Transform player;
+    public GameObject background;
+    private Vector2 maxXandY;
+    private Vector2 minXandY;
     void Awake()
     {
+        var backgroundBounds = background.GetComponent<Renderer>().bounds;
+        var camTopLeft = GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0, 0, 0));
+        var camBottomRight = GetComponent<Camera>().ViewportToWorldPoint(new Vector3(1, 1, 0));
+        minXandY.x = backgroundBounds.min.x - camTopLeft.x;
+        maxXandY.x = backgroundBounds.max.x - camBottomRight.x;
         player = GameObject.Find("Player").transform;
         if (player == null)
         {
