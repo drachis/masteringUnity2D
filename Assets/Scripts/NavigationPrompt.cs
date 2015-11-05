@@ -28,7 +28,7 @@ public class NavigationPrompt : MonoBehaviour {
             if ( GUI.Button(new Rect(55, 100, 180, 40), "Travel"))
             {
                 showDialog = false;
-                //Application.LoadLevel(1);
+                Application.LoadLevel(this.tag);
             }
 
             if (GUI.Button(new Rect(55, 150, 180, 40), "Stay"))

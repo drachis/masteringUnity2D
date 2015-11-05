@@ -12,7 +12,8 @@ public class NavigationManager : MonoBehaviour
         {"Cave", "The deep dark cave." },
         {"City", "The bustling city" },
         {"Dungeon", "The deep dark dungeon" },
-        {"Lair", "The hoard of your treasures" }
+        {"Lair", "The hoard of your treasures" },
+        {"Forest", "A lovely wooded glen." },        
     };
 
     public static string GetRouteInfo(string destination)
@@ -25,6 +26,6 @@ public class NavigationManager : MonoBehaviour
     }
     public static void NavigateTo(string destination)
     {
-    //Application.LoadLevel(destination)
+        Application.LoadLevel(destination);
     }
 }
