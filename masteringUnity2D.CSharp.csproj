@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\AI_fly_forward.cs" />
     <Compile Include="Assets\Scripts\CharacterMovement.cs" />
     <Compile Include="Assets\Scripts\DamageOnCollision.cs" />
+    <Compile Include="Assets\Scripts\Delegates.cs" />
     <Compile Include="Assets\Scripts\EnemySpawnManager.cs" />
     <Compile Include="Assets\Scripts\Entity.cs" />
     <Compile Include="Assets\Scripts\FollowCamera.cs" />
