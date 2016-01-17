@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 public class FollowCamera : MonoBehaviour {
+
     public float xMargin = 1.5f;
     public float yMargin = 1.5f;
     public float xSmooth = 1.5f;
@@ -9,18 +10,26 @@ public class FollowCamera : MonoBehaviour {
     public GameObject background;
     private Vector2 maxXandY;
     private Vector2 minXandY;
+
     void Awake()
     {
-        var backgroundBounds = background.GetComponent<Renderer>().bounds;
-        var camTopLeft = GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0, 0, 0));
-        var camBottomRight = GetComponent<Camera>().ViewportToWorldPoint(new Vector3(1, 1, 0));
-        minXandY.x = backgroundBounds.min.x - camTopLeft.x;
-        maxXandY.x = backgroundBounds.max.x - camBottomRight.x;
-        player = GameObject.Find("Player").transform;
+        
         if (player == null)
         {
-            Debug.Log("player object not found");
+            Debug.LogError("player object not found");
         }
+        var backgroundBounds = background.GetComponent<Renderer>().bounds;
+        var camTopLeft = GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0, 0, 0));
+        var camBottomRight = GetComponent<Camera>().ViewportToWorldPoint(new Vector3(1, 1, 0));        
+        player = GameObject.Find("Player").transform;
+        Debug.Log(backgroundBounds);
+        Debug.Log(camBottomRight);
+        Debug.Log(camTopLeft);
+        minXandY.x = backgroundBounds.min.x - camTopLeft.x;
+        maxXandY.x = backgroundBounds.max.x - camBottomRight.x;
+        minXandY.y = backgroundBounds.min.y - camTopLeft.y;
+        maxXandY.y = backgroundBounds.max.y - camBottomRight.y;
+
     }
     bool CheckXMargin()
     {
@@ -41,10 +50,14 @@ public class FollowCamera : MonoBehaviour {
         }
         if(CheckYMargin())
         {
-            targetY = Mathf.Lerp(transform.position.y, player.position.y, ySmooth * Time.fixedDeltaTime);
+            targetY = Mathf.Lerp(transform.position.y, player.position.y-0.5f, ySmooth * Time.fixedDeltaTime);
         }
+         
         targetX = Mathf.Clamp(targetX, minXandY.x, maxXandY.x);
         targetY = Mathf.Clamp(targetY, minXandY.y, maxXandY.y);
+        
         transform.position = new Vector3(targetX, targetY, transform.position.z);
+        Debug.Log("targetx " + targetX);
+        Debug.Log("targety " + targetY);
     }
 }
