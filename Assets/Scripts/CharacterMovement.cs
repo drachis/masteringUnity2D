@@ -65,7 +65,7 @@ public class CharacterMovement : MonoBehaviour
         }
         keepMoving = true;
     }
-
+ 
     public void moveJump()
     {
         if ( jumpTime <= Time.time)
