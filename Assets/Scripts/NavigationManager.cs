@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-
 public class NavigationManager : MonoBehaviour
 {
     private bool _CanNavigate;
@@ -26,6 +25,7 @@ public class NavigationManager : MonoBehaviour
     }
     public static void NavigateTo(string destination)
     {
-        Application.LoadLevel(destination);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(destination);
+        //Application.LoadLevel(destination); // this is obsolete. 
     }
 }

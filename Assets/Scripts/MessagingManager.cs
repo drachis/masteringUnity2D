@@ -5,7 +5,7 @@ using UnityEngine;
 public class MessagingManager: MonoBehaviour
 {
     // Static singleton property
-    public static MessagingManager Instance { get; private set}
+    public static MessagingManager Instance { get; private set;}
 
     // puiblic property for manager
     private List<Action> subscribers = new List<Action>();

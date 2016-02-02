@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 
-public class MessagingClientReciver : MonoBehaviour
+public class MessagingClientReciver: MonoBehaviour
 {
     void Start()
     {
         MessagingManager.Instance.Subscribe(ThePlayerIsTryingToLeave);
     }
 
-    void ThePlayerisTryingToLeave()
+    void ThePlayerIsTryingToLeave()
     {
         Debug.Log("Oi Don't Leave me!! - " + tag.ToString());
     }
+}
