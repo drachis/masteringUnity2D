@@ -17,12 +17,12 @@ public class LevelManager : MonoBehaviour {
         int sceneCount = SceneManager.sceneCount;
         if (sceneCount >= 2)
         {
-            Scene[] scenes = SceneManager.GetAllScenes();
+            
             for (int i = 0; i < sceneCount; i++)
             {
-                if( scenes[i].name != interfaceScene )
+                if(SceneManager.GetSceneAt(i).name != interfaceScene )
                 {
-                    SceneManager.UnloadScene(scenes[i].name);
+                    SceneManager.UnloadScene(SceneManager.GetSceneAt(i).name);
                 }
             }
         }
